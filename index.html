@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jemputan Walimatulurus - Afham & Anis</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family:'Poppins', sans-serif; background:#fdfbf7; color:#3a3a3a; text-align:center; }
+  .hero { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070'); background-size:cover; background-position:center; color:white; padding:80px 20px; }
+  .hero h1 { font-family:'Great Vibes', cursive; font-size:58px; margin:10px 0; font-weight:400; }
+  .hero p { letter-spacing:3px; text-transform:uppercase; font-size:12px; }
+  .card { background:white; max-width:650px; margin:-40px auto 40px; padding:50px 30px; border-radius:20px; box-shadow:0 10px 40px rgba(0,0,0,0.08); }
+  .bismillah { font-size:20px; margin-bottom:20px; }
+  .nama-ibu-bapa { font-family:'Playfair Display', serif; font-size:22px; font-weight:600; letter-spacing:1px; margin:20px 0; }
+  .nama-pengantin { font-family:'Great Vibes', cursive; font-size:56px; color:#8b6b4a; margin:30px 0 10px; }
+  .divider { width:80px; height:1px; background:#c9b49a; margin:20px auto; }
+  .details { background:#faf6f1; border-radius:15px; padding:25px; margin:30px 0; line-height:1.8; }
+  .btn { display:inline-block; background:#8b6b4a; color:white; padding:14px 35px; border-radius:30px; text-decoration:none; margin-top:15px; font-size:14px; letter-spacing:1px; transition:0.3s; }
+  .btn:hover { background:#6d533a; }
+  .doa { font-style:italic; color:#8b6b4a; margin-top:30px; font-size:14px; }
+  .countdown { display:flex; justify-content:center; gap:15px; margin-top:25px; }
+  .countdown div { background:white; border:1px solid #eee; padding:10px 15px; border-radius:10px; min-width:60px; }
+  .countdown span { display:block; font-size:22px; font-weight:600; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <p>Walimatulurus</p>
+  <h1>Afham & Anis</h1>
+  <p>24 . 10 . 2026</p>
+</div>
+
+<div class="card">
+  <div class="bismillah">بِسۡمِ ٱللهِ ٱلرَّحۡـمَـٰنِ ٱلرَّحِـيمِ<br>السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</div>
+  
+  <p>Dengan penuh kesyukuran ke hadrat Allah S.W.T,<br>kami sekeluarga mempersilakan</p>
+  
+  <div class="nama-ibu-bapa">CHOOHAIMI<br>&<br>NOOR AZIZAH</div>
+  
+  <p>Dengan segala hormatnya menjemput<br>Dato'/ Datin/ Tuan/ Puan/ Encik/ Cik sekeluarga ke Majlis Menyambut Menantu putera kami tercinta</p>
+  
+  <div class="nama-pengantin">Afham & Anis</div>
+  <div class="divider"></div>
+
+  <div class="details">
+    <strong>SABTU, 24 OKTOBER 2026</strong><br>
+    11.30 Pagi - 4.00 Petang<br><br>
+    <strong>CHOO COTTAGE</strong><br>
+    Shah Alam, Selangor
+  </div>
+
+  <div class="countdown" id="countdown">
+    <div><span id="days">00</span>Hari</div>
+    <div><span id="hours">00</span>Jam</div>
+    <div><span id="minutes">00</span>Minit</div>
+    <div><span id="seconds">00</span>Saat</div>
+  </div>
+
+  <br><br>
+  <a class="btn" href="https://maps.app.goo.gl/wggdWtLeBgXtTn4NA?g_st=ic" target="_blank">📍 LIHAT LOKASI</a>
+  <a class="btn" style="background:transparent; color:#8b6b4a; border:1px solid #8b6b4a; margin-left:8px;" href="https://wa.me/?text=InsyaAllah%20saya%20akan%20hadir%20ke%20majlis%20Afham%20%26%20Anis"> RSVP WhatsApp</a>
+
+  <p class="doa">
+    "Ya Allah, berkatilah majlis ini, limpahkanlah baraqah dan rahmat kepada kedua mempelai ini, Kurniakanlah mereka zuriat yang soleh dan solehah dan kekalkanlah jodoh mereka di dunia dan di akhirat."<br><br>
+    بَارَكَ اللهُ لَكُماَ وَبَارَكَ عَلَيْكُماَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+  </p>
+
+  <div class="divider"></div>
+  <p style="font-size:12px; letter-spacing:2px;">TURUT MENGUNDANG<br>SEISI KELUARGA</p>
+</div>
+
+<script>
+  var countDownDate = new Date("Oct 24, 2026 11:30:00").getTime();
+  setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+    document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
+    document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
+  }, 1000);
+</script>
+
+</body>
+</html>
