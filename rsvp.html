@@ -24,7 +24,6 @@
   .link-kad{display:inline-block;margin-top:15px;color:#8b6b4a;text-decoration:none;font-size:12px;letter-spacing:1px;border:1px solid #8b6b4a;padding:8px 18px;border-radius:20px}
   .success{display:none;text-align:center}
   .error{display:none;text-align:center;color:#b00020;font-size:13px;margin-top:15px}
-  /* Button Music Floating */
   .music-btn{position:fixed;bottom:20px;right:20px;width:48px;height:48px;background:white;border-radius:50%;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:999;border:1px solid #e8ddd0}
   .music-btn span{font-size:22px}
 </style>
@@ -89,10 +88,9 @@
   </div>
 </div>
 
-<!-- AUDIO + BUTTON MUSIC -->
-<audio id="bgMusic" loop>
+<!-- AUDIO AUTO PLAY FIX IPHONE -->
+<audio id="bgMusic" loop autoplay muted playsinline>
   <source src="./lagu.mp3" type="audio/mpeg">
-  <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_fbd3a7d5a4.mp3" type="audio/mpeg">
 </audio>
 
 <div class="music-btn" id="musicBtn" onclick="toggleMusic()">
@@ -103,22 +101,35 @@
 const scriptURL = 'https://script.google.com/macros/s/AKfycbyoz4m5mWGL4lAyTCdnnxNmGp8aUK2c1SapB_PjRthHbzagAzsyNTn9ZE8nakof4Aio/exec';
 const NO_TUAN_RUMAH = "60189424611";
 
-// MUSIC LOGIC
+// MUSIC - AUTO PLAY FIX
 const music = document.getElementById('bgMusic');
 const icon = document.getElementById('musicIcon');
 let isPlaying = false;
 
 function toggleMusic(){
   if(isPlaying){ music.pause(); icon.textContent = "🔇"; isPlaying=false; }
-  else { music.play().catch(()=>{}); icon.textContent = "🎵"; isPlaying=true; }
+  else { music.muted = false; music.play().catch(()=>{}); icon.textContent = "🎵"; isPlaying=true; }
 }
-// Auto cuba play bila user scroll/click pertama (sebab browser block autoplay)
-document.body.addEventListener('click', function firstPlay(){
-  if(!isPlaying){ music.play().then(()=>{ isPlaying=true; icon.textContent="🎵"; }).catch(()=>{}); }
-  document.body.removeEventListener('click', firstPlay);
-}, {once:true});
 
-// RSVP LOGIC
+function cubaPlay(){
+  music.muted = true;
+  music.play().then(()=>{
+    isPlaying=true; icon.textContent="🎵";
+    setTimeout(()=>{ music.muted = false; }, 300);
+  }).catch(()=>{});
+}
+
+function unmuteKalauPlay(){
+  if(isPlaying){ music.muted = false; } else { cubaPlay(); }
+}
+
+window.addEventListener('load', cubaPlay);
+document.addEventListener('DOMContentLoaded', cubaPlay);
+['click','touchstart','scroll','keydown'].forEach(ev=>{
+  document.addEventListener(ev, unmuteKalauPlay, {once:true});
+});
+
+// RSVP - FIX WHATSAPP IPHONE
 document.getElementById('rsvpForm').addEventListener('submit', function(e){
   e.preventDefault();
   const form = e.target;
@@ -134,15 +145,24 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e){
     Total: formData.get('Total'),
     Wishes: formData.get('Wishes')
   };
-  const mesejWA = `Assalamualaikum%0A%0ASaya *${data.Name}* (${data.Phone})%0AStatus: *${data.Confirmation}* - ${data.Total}%0A%0AUcapan: ${data.Wishes}%0A%0ARSVP untuk majlis Afham & Anis 24 Okt di Choo Cottage.`;
-  const waUrl = `https://wa.me/${NO_TUAN_RUMAH}?text=${mesejWA}`;
+  
+  const mesejText = `Assalamualaikum
+
+Saya *${data.Name}* (${data.Phone})
+Status: *${data.Confirmation}* - ${data.Total}
+
+Ucapan: ${data.Wishes}
+
+RSVP untuk majlis Afham & Anis 24 Okt di Choo Cottage.`;
+
+  const waUrl = `https://api.whatsapp.com/send?phone=${NO_TUAN_RUMAH}&text=${encodeURIComponent(mesejText)}`;
   document.getElementById('btnWhatsapp').href = waUrl;
 
   fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) })
   .then(function(){
     form.style.display = 'none';
     document.getElementById('successMsg').style.display = 'block';
-    setTimeout(()=>{ window.open(waUrl, '_blank'); }, 1500);
+    setTimeout(()=>{ window.location.href = waUrl; }, 1500);
   })
   .catch(function(){
     btn.textContent = 'HANTAR RSVP'; btn.disabled = false; errorMsg.style.display = 'block';
