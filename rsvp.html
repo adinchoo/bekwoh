@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSVP - Afham & Anis</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; font-family:'Poppins', sans-serif; background:#fdfbf7; color:#3a3a3a; text-align:center; }
+  .hero-mini { background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('./hero.jpeg'); background-size:cover; background-position:center top; color:white; padding:60px 20px 90px; }
+  .hero-mini h1 { font-family:'Great Vibes', cursive; font-size:58px; margin:10px 0; font-weight:400; }
+  .hero-mini p { letter-spacing:4px; text-transform:uppercase; font-size:11px; }
+  .card { background:white; max-width:600px; margin:-60px auto 40px; padding:35px 25px; border-radius:20px; box-shadow:0 15px 50px rgba(0,0,0,0.08); position:relative; z-index:2; text-align:left; }
+  .title { font-family:'Playfair Display', serif; font-size:22px; font-weight:600; text-align:center; letter-spacing:1px; color:#8b6b4a; }
+  .subtitle { text-align:center; font-size:12px; letter-spacing:2px; margin-top:5px; opacity:0.7; }
+  .divider { width:80px; height:1px; background:#c9b49a; margin:18px auto; }
+  .details { background:#faf6f1; border-radius:15px; padding:18px; margin:20px 0; line-height:1.7; font-size:13px; text-align:center; }
+  label{font-weight:500;margin-top:16px;display:block;font-size:13px;letter-spacing:0.5px}
+  input,select,textarea{width:100%;padding:13px 14px;margin-top:6px;border-radius:12px;border:1px solid #e8ddd0;font-family:inherit;font-size:14px;box-sizing:border-box;background:#fffdfb}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:#8b6b4a}
+  .btn { display:inline-block; background:#8b6b4a; color:white; border:none; width:100%; padding:15px; border-radius:30px; font-size:13px; letter-spacing:2px; margin-top:22px; cursor:pointer; transition:0.3s; text-transform:uppercase; }
+  .btn:hover { background:#6d533a; }
+  .btn:disabled{opacity:0.6}
+  .success{display:none;text-align:center;padding:30px 10px}
+  .link-kad{display:inline-block;margin-top:15px;color:#8b6b4a;text-decoration:none;font-size:12px;letter-spacing:1px;border:1px solid #8b6b4a;padding:8px 18px;border-radius:20px}
+</style>
+</head>
+<body>
+
+<div class="hero-mini">
+  <p>WALIMATULURUS</p>
+  <h1>Afham & Anis</h1>
+  <p>24 . 10 . 2026 | CHOO COTTAGE</p>
+</div>
+
+<div class="card">
+  <div class="title">RSVP KEHADIRAN</div>
+  <div class="subtitle">MOHON SAHKAN KEHADIRAN ANDA</div>
+  <div class="divider"></div>
+
+  <div class="details">
+    <strong>SABTU, 24 OKTOBER 2026</strong><br>
+    11.30 Pagi - 4.00 Petang<br>
+    CHOO COTTAGE, Pasir Puteh, Kelantan
+  </div>
+
+<form id="rsvpForm">
+<label>Nama Penuh *</label>
+<input type="text" name="nama" required placeholder="Cth: Ahmad bin Ali">
+
+<label>No Telefon WhatsApp *</label>
+<input type="tel" name="telefon" required placeholder="012-3456789">
+
+<label>Kehadiran *</label>
+<select name="kehadiran" required>
+<option value="">-- Pilih Status --</option>
+<option value="Hadir">✅ Hadir, InsyaAllah</option>
+<option value="Tidak Hadir">❌ Tidak Dapat Hadir</option>
+<option value="Mungkin">🤔 Mungkin Hadir</option>
+</select>
+
+<label>Bilangan Tetamu</label>
+<select name="jumlah">
+<option value="1">1 Orang</option>
+<option value="2" selected>2 Orang</option>
+<option value="3">3 Orang</option>
+<option value="4">4 Orang</option>
+<option value="5">5 Orang</option>
+<option value="Lebih 5">Lebih 5 Orang</option>
+</select>
+
+<label>Ucapan / Doa Buat Pengantin</label>
+<textarea name="ucapan" rows="3" placeholder="Semoga berbahagia hingga ke Jannah..."></textarea>
+
+<button type="submit" class="btn">HANTAR RSVP</button>
+</form>
+
+<div class="success" id="successMsg">
+  <div style="font-family:'Great Vibes',cursive;font-size:52px;color:#8b6b4a;">Terima Kasih!</div>
+  <p style="font-size:13px;line-height:1.7">RSVP anda telah kami terima.<br>Semoga kehadiran anda memeriahkan majlis.</p>
+  <div class="divider"></div>
+  <p style="font-size:11px;letter-spacing:2px;">AFHAM & ANIS</p>
+  <br>
+  <a class="btn" style="text-decoration:none;display:inline-block;width:auto;padding:12px 30px" href="https://adinchoo.github.io/bekwoh/">KEMBALI KE KAD</a>
+</div>
+
+<div style="text-align:center;margin-top:20px">
+  <a class="link-kad" href="https://adinchoo.github.io/bekwoh/">← Kembali ke Kad Digital</a>
+</div>
+
+</div>
+
+<script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyoz4m5mWGL4lAyTCdnnxNmGp8aUK2c1SapB_PjRthHbzagAzsyNTn9ZE8nakof4Aio/exec';
+
+document.getElementById('rsvpForm').addEventListener('submit', e=>{
+ e.preventDefault();
+ const btn = e.target.querySelector('.btn');
+ btn.textContent='SEDANG MENGHANTAR...';
+ btn.disabled=true;
+ const data = Object.fromEntries(new FormData(e.target).entries());
+ data.tarikh = new Date().toLocaleString('ms-MY');
+ fetch(scriptURL,{method:'POST',mode:'no-cors',body:JSON.stringify(data)})
+ .then(()=>{
+   document.getElementById('rsvpForm').style.display='none';
+   document.getElementById('successMsg').style.display='block';
+ });
+});
+</script>
+</body>
+</html>
