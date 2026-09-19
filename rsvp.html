@@ -24,6 +24,9 @@
   .link-kad{display:inline-block;margin-top:15px;color:#8b6b4a;text-decoration:none;font-size:12px;letter-spacing:1px;border:1px solid #8b6b4a;padding:8px 18px;border-radius:20px}
   .success{display:none;text-align:center}
   .error{display:none;text-align:center;color:#b00020;font-size:13px;margin-top:15px}
+  /* Button Music Floating */
+  .music-btn{position:fixed;bottom:20px;right:20px;width:48px;height:48px;background:white;border-radius:50%;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:999;border:1px solid #e8ddd0}
+  .music-btn span{font-size:22px}
 </style>
 </head>
 <body>
@@ -42,16 +45,14 @@
   <div class="details">
     <strong>SABTU, 24 OKTOBER 2026</strong><br>
     11.00 Pagi - 4.00 Petang<br>
-    Choo Cottage,Pasir Puteh, Kelantan
+    Choo Cottage, Pasir Puteh, Kelantan
   </div>
 
   <form id="rsvpForm">
     <label>Nama Anda</label>
     <input type="text" name="Name" placeholder="Nama Penuh" required>
-
     <label>No. Telefon</label>
     <input type="text" name="Phone" placeholder="012-3456789" required>
-
     <label>Status Kehadiran</label>
     <select name="Confirmation" required>
       <option value="" disabled selected>-- Pilih Status --</option>
@@ -59,7 +60,6 @@
       <option value="Tidak Hadir">❌ Tidak Dapat Hadir</option>
       <option value="Mungkin">🤔 Mungkin Hadir</option>
     </select>
-
     <label>Bilangan Tetamu</label>
     <select name="Total">
       <option value="1 Orang">1 Orang</option>
@@ -69,10 +69,8 @@
       <option value="5 Orang">5 Orang</option>
       <option value="Lebih 5 Orang">Lebih 5 Orang</option>
     </select>
-
     <label>Ucapan / Doa Buat Pengantin</label>
     <textarea name="Wishes" rows="3" placeholder="Semoga berbahagia hingga ke Jannah..."></textarea>
-
     <button type="submit" class="btn" id="btnSubmit">HANTAR RSVP</button>
     <p class="error" id="errorMsg">Maaf, terdapat masalah semasa menghantar RSVP. Sila cuba lagi.</p>
   </form>
@@ -91,18 +89,42 @@
   </div>
 </div>
 
+<!-- AUDIO + BUTTON MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="./lagu.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_fbd3a7d5a4.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-btn" id="musicBtn" onclick="toggleMusic()">
+  <span id="musicIcon">🎵</span>
+</div>
+
 <script>
 const scriptURL = 'https://script.google.com/macros/s/AKfycbyoz4m5mWGL4lAyTCdnnxNmGp8aUK2c1SapB_PjRthHbzagAzsyNTn9ZE8nakof4Aio/exec';
-// TUKAR NO HP TUAN RUMAH DISINI
-const NO_TUAN_RUMAH = "60189424611"; 
+const NO_TUAN_RUMAH = "60189424611";
 
+// MUSIC LOGIC
+const music = document.getElementById('bgMusic');
+const icon = document.getElementById('musicIcon');
+let isPlaying = false;
+
+function toggleMusic(){
+  if(isPlaying){ music.pause(); icon.textContent = "🔇"; isPlaying=false; }
+  else { music.play().catch(()=>{}); icon.textContent = "🎵"; isPlaying=true; }
+}
+// Auto cuba play bila user scroll/click pertama (sebab browser block autoplay)
+document.body.addEventListener('click', function firstPlay(){
+  if(!isPlaying){ music.play().then(()=>{ isPlaying=true; icon.textContent="🎵"; }).catch(()=>{}); }
+  document.body.removeEventListener('click', firstPlay);
+}, {once:true});
+
+// RSVP LOGIC
 document.getElementById('rsvpForm').addEventListener('submit', function(e){
   e.preventDefault();
   const form = e.target;
   const btn = document.getElementById('btnSubmit');
   const errorMsg = document.getElementById('errorMsg');
   btn.textContent = 'SEDANG MENGHANTAR...'; btn.disabled = true; errorMsg.style.display='none';
-
   const formData = new FormData(form);
   const data = {
     Date: new Date().toLocaleString('ms-MY'),
@@ -112,8 +134,6 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e){
     Total: formData.get('Total'),
     Wishes: formData.get('Wishes')
   };
-
-  // Sediakan mesej WhatsApp
   const mesejWA = `Assalamualaikum%0A%0ASaya *${data.Name}* (${data.Phone})%0AStatus: *${data.Confirmation}* - ${data.Total}%0A%0AUcapan: ${data.Wishes}%0A%0ARSVP untuk majlis Afham & Anis 24 Okt di Choo Cottage.`;
   const waUrl = `https://wa.me/${NO_TUAN_RUMAH}?text=${mesejWA}`;
   document.getElementById('btnWhatsapp').href = waUrl;
@@ -122,7 +142,6 @@ document.getElementById('rsvpForm').addEventListener('submit', function(e){
   .then(function(){
     form.style.display = 'none';
     document.getElementById('successMsg').style.display = 'block';
-    // Auto buka WhatsApp lepas 1.5 saat - FREE tanpa API
     setTimeout(()=>{ window.open(waUrl, '_blank'); }, 1500);
   })
   .catch(function(){
