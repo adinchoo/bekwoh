@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Walimatulurus Afham & Anis - Choo Cottage</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  body { margin:0; font-family:'Poppins', sans-serif; background:#fdfbf7; color:#3a3a3a; text-align:center; }
+  body { margin:0; font-family:'Poppins', sans-serif; background:#fdfbf7; color:#3a3a3a; text-align:center; scroll-behavior:smooth; }
   .hero { background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('./hero.jpeg'); background-size:cover; background-position:center top; color:white; padding:80px 20px; min-height:90vh; display:flex; flex-direction:column; justify-content:center; }
   .hero h1 { font-family:'Great Vibes', cursive; font-size:62px; margin:10px 0; font-weight:400; text-shadow:0 2px 15px rgba(0,0,0,0.4); }
   .hero p { letter-spacing:4px; text-transform:uppercase; font-size:12px; }
@@ -16,9 +16,8 @@
   .nama-pengantin { font-family:'Great Vibes', cursive; font-size:56px; color:#8b6b4a; margin:30px 0 10px; }
   .divider { width:80px; height:1px; background:#c9b49a; margin:20px auto; }
   .details { background:#faf6f1; border-radius:15px; padding:25px; margin:30px 0; line-height:1.8; }
-  .btn { display:inline-block; background:#8b6b4a; color:white; padding:14px 32px; border-radius:30px; text-decoration:none; margin:6px; font-size:13px; letter-spacing:1px; transition:0.3s; }
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; background:#8b6b4a; color:white; padding:14px 28px; border-radius:999px; text-decoration:none; margin:6px; font-size:13px; letter-spacing:1px; transition:0.3s; cursor:pointer; border:none; }
   .btn:hover { background:#6d533a; }
-  .btn-outline { background:transparent; color:#8b6b4a; border:1px solid #8b6b4a; }
   .doa { font-style:italic; color:#8b6b4a; margin-top:30px; font-size:14px; line-height:1.8; }
   .countdown { display:flex; justify-content:center; gap:12px; margin-top:25px; }
   .countdown div { background:white; border:1px solid #eee; padding:10px 12px; border-radius:12px; min-width:65px; }
@@ -26,6 +25,39 @@
   #overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#fdfbf7;z-index:10000;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:0.8s}
   #overlay h1{font-family:'Great Vibes',cursive;font-size:68px;color:#8b6b4a}
   #musicBtn{position:fixed;bottom:25px;right:25px;background:#8b6b4a;color:#fff;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:9999;cursor:pointer;box-shadow:0 5px 20px rgba(0,0,0,0.2)}
+
+  /* BUTTON MAPS COMEY */
+  .map-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+  .btn-map{display:inline-flex;align-items:center;gap:10px;padding:11px 22px 11px 12px;border-radius:100px;background:#fff;border:1px solid #f1e8dc;color:#5a4330;text-decoration:none;font-size:13px;font-weight:500;box-shadow:0 4px 18px rgba(139,107,74,0.08);transition:0.3s}
+  .btn-map:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(139,107,74,0.15)}
+  .icon-circle{width:32px;height:32px;border-radius:50%;background:#fdf6ef;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .btn-map.waze .icon-circle{background:#eef7ff}
+  .icon-circle img{width:20px;height:20px;object-fit:contain}
+  
+  /* OVERRIDE - KASI BUTTON MAP JADI PUTIH WALAUPUN PAKAI CLASS BTN */
+.map-actions .btn{
+  background:#ffffff !important;
+  color:#5a4330 !important;
+  border:1px solid #f1e8dc !important;
+  box-shadow:0 4px 18px rgba(139,107,74,0.08);
+}
+.map-actions .btn:hover{
+  background:#fffdf8 !important;
+}
+.map-actions .icon-circle{
+  background:#ffffff !important;
+  border:1px solid #f1e8dc;
+}
+
+  /* RSVP MERGE */
+  .rsvp-card{max-width:650px;margin:20px auto 40px;padding:0;overflow:hidden;display:none;animation:fadeUp 0.6s ease}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  .rsvp-banner{height:250px;background:linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.45)), url('./choo.jpeg');background-size:cover;background-position:center;display:flex;align-items:flex-end;justify-content:center;padding:20px;color:white;font-family:'Playfair Display',serif;letter-spacing:1px}
+  .rsvp-form-wrap{padding:35px 30px;text-align:left;background:white;border-radius:0 0 20px 20px}
+  .rsvp-form-wrap label{font-weight:500;margin-top:16px;display:block;font-size:13px}
+  .rsvp-form-wrap input,.rsvp-form-wrap select,.rsvp-form-wrap textarea{width:100%;padding:13px 14px;margin-top:6px;border-radius:12px;border:1px solid #e8ddd0;font-family:inherit;font-size:14px;box-sizing:border-box;background:#fffdfb}
+  .rsvp-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;text-align:center;color:#8b6b4a}
+  .success,.error{display:none;text-align:center}
 </style>
 </head>
 <body>
@@ -67,14 +99,24 @@
   </div>
   <br><br>
 
-<!-- BUTANG MAPS & WAZE BARU - SUPPORT IPHONE & ANDROID -->
-<a class="btn" href="https://www.google.com/maps/place/Choo+Cottage/@5.8424217,102.3789854,1085m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31b6935c11ff8c85:0x345db48279aae7e6!8m2!3d5.8424217!4d102.3815603!16s%2Fg%2F11fcs3_2bq?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">📍 Google Maps</a>
-<a class="btn btn-outline" href="https://waze.com/ul/hw30c1xxgw" target="_blank">🚗 Waze</a>
-<br><br>
+<!-- BUTTON COMEY BARU - LINK ASAL TAK UBAH -->
+  <div class="map-actions">
+    <a class="btn" href="https://www.google.com/maps/place/Choo+Cottage/@5.8424217,102.3789854,1085m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31b6935c11ff8c85:0x345db48279aae7e6!8m2!3d5.8424217!4d102.3815603!16s%2Fg%2F11fcs3_2bq?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+      <span class="icon-circle"><img src="https://www.pngmart.com/files/23/Google-Maps-Logo-PNG-Isolated-HD.png" alt="Google Maps"></span>
+      Google Maps
+    </a>
+    <a class="btn btn-outline" href="https://waze.com/ul/hw30c1xxgw" target="_blank">
+      <span class="icon-circle"><img src="https://iconlogovector.com/uploads/images/2023/03/sm-2c74b3cef6e028409c6780aa47fc582653.jpg" alt="Waze"></span>
+      Waze
+    </a>
+  </div>
+  
+ 
 
-<!-- BUTANG RSVP BARU - LINK KE RSVP.HTML -->
-<a class="btn" href="rsvp.html" style="padding:16px 40px; font-size:14px; letter-spacing:2px;">📝 RSVP KEHADIRAN</a>
-<p style="font-size:11px; color:#888; margin-top:8px; letter-spacing:1px;">Sila sahkan kehadiran anda di sini</p>
+  <br><br>
+  <!-- BUTTON RSVP JADI SHOW FORM, BUKAN LINK PAGE BARU -->
+  <button class="btn" onclick="bukaRsvp()" style="padding:16px 40px; font-size:14px; letter-spacing:2px;">📝 RSVP KEHADIRAN</button>
+  <p style="font-size:11px; color:#888; margin-top:8px; letter-spacing:1px;">Sila sahkan kehadiran anda di sini</p>
 
   <p class="doa">
     "Ya Allah, berkatilah majlis ini, limpahkanlah baraqah dan rahmat kepada kedua mempelai ini, Kurniakanlah mereka zuriat yang soleh dan solehah dan kekalkanlah jodoh mereka di dunia dan di akhirat."<br><br>
@@ -84,16 +126,63 @@
   <p style="font-size:11px; letter-spacing:2px;">TURUT MENGUNDANG<br>SEISI KELUARGA</p>
 </div>
 
+<!-- RSVP FORM MERGE DALAM FILE NI - TAKDE NO TEL -->
+<div class="card rsvp-card" id="rsvp">
+  <div class="rsvp-banner">CHOO COTTAGE</div>
+  <div class="rsvp-form-wrap">
+    <div class="rsvp-title">RSVP KEHADIRAN</div>
+    <p style="text-align:center;font-size:11px;letter-spacing:2px;opacity:0.7;margin-top:5px">MOHON SAHKAN KEHADIRAN ANDA</p>
+    <div class="divider"></div>
+    <form id="rsvpForm">
+      <label>Nama Anda</label>
+      <input type="text" name="Name" placeholder="Nama Penuh" required>
+      <label>Status Kehadiran</label>
+      <select name="Confirmation" required>
+        <option value="" disabled selected>-- Pilih Status --</option>
+        <option value="Hadir">✅ Hadir, InsyaAllah</option>
+        <option value="Tidak Hadir">❌ Tidak Dapat Hadir</option>
+        <option value="Mungkin">🤔 Mungkin Hadir</option>
+      </select>
+      <label>Bilangan Tetamu</label>
+      <select name="Total">
+        <option value="1 Orang">1 Orang</option>
+        <option value="2 Orang" selected>2 Orang</option>
+        <option value="3 Orang">3 Orang</option>
+        <option value="4 Orang">4 Orang</option>
+        <option value="5 Orang">5 Orang</option>
+        <option value="Lebih 5 Orang">Lebih 5 Orang</option>
+      </select>
+      <label>Ucapan / Doa</label>
+      <textarea name="Wishes" rows="3" placeholder="Semoga berbahagia hingga ke Jannah..."></textarea>
+      <button type="submit" class="btn" id="btnSubmit" style="width:100%;margin-top:22px">HANTAR RSVP</button>
+      <p class="error" id="errorMsg" style="margin-top:15px;color:#b00020">Maaf, gagal hantar. Sila cuba lagi.</p>
+    </form>
+    <div class="success" id="successMsg">
+      <div style="font-family:'Great Vibes',cursive;font-size:52px;color:#8b6b4a;">Terima Kasih!</div>
+      <p style="font-size:13px;line-height:1.7">RSVP anda telah kami terima.</p>
+      <div class="divider"></div>
+      <a class="btn" id="btnWhatsapp" href="#" target="_blank">HANTAR KE WHATSAPP JUGA</a>
+    </div>
+  </div>
+</div>
+
 <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyoz4m5mWGL4lAyTCdnnxNmGp8aUK2c1SapB_PjRthHbzagAzsyNTn9ZE8nakof4Aio/exec';
+  const NO_TUAN_RUMAH = "60189424611";
   var lagu = document.getElementById("myLagu");
   var isPlaying = false;
   function bukaUndangan(){
     document.getElementById('overlay').style.transform='translateY(-100%)';
-    lagu.play(); isPlaying=true;
+    lagu.play().catch(()=>{}); isPlaying=true; document.getElementById("musicBtn").innerHTML="🎵";
   }
   function toggleLagu(){
     if(isPlaying){ lagu.pause(); isPlaying=false; document.getElementById("musicBtn").innerHTML="🔇"; }
     else { lagu.play(); isPlaying=true; document.getElementById("musicBtn").innerHTML="🎵"; }
+  }
+  function bukaRsvp(){
+    const el = document.getElementById('rsvp');
+    el.style.display = 'block';
+    setTimeout(()=>{ el.scrollIntoView({behavior:'smooth', block:'start'}); }, 150);
   }
   var countDownDate = new Date("Oct 24, 2026 11:30:00").getTime();
   setInterval(function() {
@@ -106,6 +195,21 @@
       document.getElementById("seconds").innerHTML = Math.floor((distance % (1000*60)) / 1000);
     }
   }, 1000);
+
+  document.getElementById('rsvpForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const form = e.target;
+    const btn = document.getElementById('btnSubmit');
+    const errorMsg = document.getElementById('errorMsg');
+    btn.textContent = 'SEDANG MENGHANTAR...'; btn.disabled = true; errorMsg.style.display='none';
+    const fd = new FormData(form);
+    const data = { Date: new Date().toLocaleString('ms-MY'), Name: fd.get('Name'), Confirmation: fd.get('Confirmation'), Total: fd.get('Total'), Wishes: fd.get('Wishes') };
+    const waUrl = `https://wa.me/${NO_TUAN_RUMAH}?text=RSVP%20*${encodeURIComponent(data.Name)}*%20-%20${encodeURIComponent(data.Confirmation)}%20(${encodeURIComponent(data.Total)})%0A${encodeURIComponent(data.Wishes)}`;
+    document.getElementById('btnWhatsapp').href = waUrl;
+    fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) })
+    .then(()=>{ form.style.display='none'; document.getElementById('successMsg').style.display='block'; setTimeout(()=>window.open(waUrl,'_blank'),1000); })
+    .catch(()=>{ btn.textContent='HANTAR RSVP'; btn.disabled=false; errorMsg.style.display='block'; });
+  });
 </script>
 </body>
 </html>
