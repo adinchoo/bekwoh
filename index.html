@@ -25,31 +25,15 @@
   #overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#fdfbf7;z-index:10000;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:0.8s}
   #overlay h1{font-family:'Great Vibes',cursive;font-size:68px;color:#8b6b4a}
   #musicBtn{position:fixed;bottom:25px;right:25px;background:#8b6b4a;color:#fff;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:9999;cursor:pointer;box-shadow:0 5px 20px rgba(0,0,0,0.2)}
-
-  /* BUTTON MAPS COMEY */
   .map-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:10px}
   .btn-map{display:inline-flex;align-items:center;gap:10px;padding:11px 22px 11px 12px;border-radius:100px;background:#fff;border:1px solid #f1e8dc;color:#5a4330;text-decoration:none;font-size:13px;font-weight:500;box-shadow:0 4px 18px rgba(139,107,74,0.08);transition:0.3s}
   .btn-map:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(139,107,74,0.15)}
   .icon-circle{width:32px;height:32px;border-radius:50%;background:#fdf6ef;display:flex;align-items:center;justify-content:center;overflow:hidden}
   .btn-map.waze .icon-circle{background:#eef7ff}
   .icon-circle img{width:20px;height:20px;object-fit:contain}
-  
-  /* OVERRIDE - KASI BUTTON MAP JADI PUTIH WALAUPUN PAKAI CLASS BTN */
-.map-actions .btn{
-  background:#ffffff !important;
-  color:#5a4330 !important;
-  border:1px solid #f1e8dc !important;
-  box-shadow:0 4px 18px rgba(139,107,74,0.08);
-}
-.map-actions .btn:hover{
-  background:#fffdf8 !important;
-}
-.map-actions .icon-circle{
-  background:#ffffff !important;
-  border:1px solid #f1e8dc;
-}
-
-  /* RSVP MERGE */
+  .map-actions .btn{ background:#ffffff !important; color:#5a4330 !important; border:1px solid #f1e8dc !important; box-shadow:0 4px 18px rgba(139,107,74,0.08); }
+  .map-actions .btn:hover{ background:#fffdf8 !important; }
+  .map-actions .icon-circle{ background:#ffffff !important; border:1px solid #f1e8dc; }
   .rsvp-card{max-width:650px;margin:20px auto 40px;padding:0;overflow:hidden;display:none;animation:fadeUp 0.6s ease}
   @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
   .rsvp-banner{height:250px;background:linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.45)), url('./choo.jpeg');background-size:cover;background-position:center;display:flex;align-items:flex-end;justify-content:center;padding:20px;color:white;font-family:'Playfair Display',serif;letter-spacing:1px}
@@ -62,7 +46,7 @@
 </head>
 <body>
 
-<audio id="myLagu" loop><source src="./lagu.mp3" type="audio/mpeg"></audio>
+<audio id="myLagu" loop playsinline><source src="./lagu.mp3" type="audio/mpeg"></audio>
 <div id="musicBtn" onclick="toggleLagu()">🎵</div>
 
 <div id="overlay">
@@ -79,7 +63,7 @@
 </div>
 
 <div class="card">
-  <div class="bismillah">بِسۡمِ ٱللهِ ٱلرَّحۡـمَـٰنِ ٱلرَّحِـيمِ<br>السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</div>
+  <div class="bismillah">بِسۡمِ ٱللهِ ٱلرَّحۡـمَـٰنِ ٱلرَّحِيمِ<br>السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</div>
   <p>Dengan penuh kesyukuran ke hadrat Allah S.W.T,<br>kami:</p>
   <div class="nama-ibu-bapa">CHOOHAIMI<br>&<br>NOOR AZIZAH</div>
   <p>Dengan segala hormatnya menjemput<br>Dato'/ Datin/ Tuan/ Puan/ Encik/ Cik sekeluarga ke Majlis Menyambut Menantu putera kami tercinta</p>
@@ -99,7 +83,7 @@
   </div>
   <br><br>
 
-<!-- BUTTON COMEY BARU - LINK ASAL TAK UBAH -->
+<!-- LINK ASAL TAK UBAH - PUTIH -->
   <div class="map-actions">
     <a class="btn" href="https://www.google.com/maps/place/Choo+Cottage/@5.8424217,102.3789854,1085m/data=!3m2!1e3!4b1!4m6!3m5!1s0x31b6935c11ff8c85:0x345db48279aae7e6!8m2!3d5.8424217!4d102.3815603!16s%2Fg%2F11fcs3_2bq?entry=ttu&g_ep=EgoyMDI2MDkxNi4wIKXMDSoASAFQAw%3D%3D" target="_blank">
       <span class="icon-circle"><img src="https://www.pngmart.com/files/23/Google-Maps-Logo-PNG-Isolated-HD.png" alt="Google Maps"></span>
@@ -110,11 +94,8 @@
       Waze
     </a>
   </div>
-  
- 
 
   <br><br>
-  <!-- BUTTON RSVP JADI SHOW FORM, BUKAN LINK PAGE BARU -->
   <button class="btn" onclick="bukaRsvp()" style="padding:16px 40px; font-size:14px; letter-spacing:2px;">📝 RSVP KEHADIRAN</button>
   <p style="font-size:11px; color:#888; margin-top:8px; letter-spacing:1px;">Sila sahkan kehadiran anda di sini</p>
 
@@ -126,7 +107,6 @@
   <p style="font-size:11px; letter-spacing:2px;">TURUT MENGUNDANG<br>SEISI KELUARGA</p>
 </div>
 
-<!-- RSVP FORM MERGE DALAM FILE NI - TAKDE NO TEL -->
 <div class="card rsvp-card" id="rsvp">
   <div class="rsvp-banner">CHOO COTTAGE</div>
   <div class="rsvp-form-wrap">
@@ -203,11 +183,32 @@
     const errorMsg = document.getElementById('errorMsg');
     btn.textContent = 'SEDANG MENGHANTAR...'; btn.disabled = true; errorMsg.style.display='none';
     const fd = new FormData(form);
-    const data = { Date: new Date().toLocaleString('ms-MY'), Name: fd.get('Name'), Confirmation: fd.get('Confirmation'), Total: fd.get('Total'), Wishes: fd.get('Wishes') };
-    const waUrl = `https://wa.me/${NO_TUAN_RUMAH}?text=RSVP%20*${encodeURIComponent(data.Name)}*%20-%20${encodeURIComponent(data.Confirmation)}%20(${encodeURIComponent(data.Total)})%0A${encodeURIComponent(data.Wishes)}`;
+    const data = { 
+      Date: new Date().toLocaleString('ms-MY'), 
+      Name: fd.get('Name'), 
+      Confirmation: fd.get('Confirmation'), 
+      Total: fd.get('Total'), 
+      Wishes: fd.get('Wishes') 
+    };
+    
+    const mesejText = `Assalamualaikum
+
+Saya *${data.Name}*
+Status: *${data.Confirmation}* - ${data.Total}
+
+Ucapan: ${data.Wishes}
+
+RSVP untuk majlis Afham & Anis 24 Okt di Choo Cottage.`;
+
+    const waUrl = `https://api.whatsapp.com/send?phone=${NO_TUAN_RUMAH}&text=${encodeURIComponent(mesejText)}`;
     document.getElementById('btnWhatsapp').href = waUrl;
+
     fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(data) })
-    .then(()=>{ form.style.display='none'; document.getElementById('successMsg').style.display='block'; setTimeout(()=>window.open(waUrl,'_blank'),1000); })
+    .then(()=>{
+      form.style.display='none'; 
+      document.getElementById('successMsg').style.display='block'; 
+      setTimeout(()=>{ window.location.href = waUrl; }, 1000);
+    })
     .catch(()=>{ btn.textContent='HANTAR RSVP'; btn.disabled=false; errorMsg.style.display='block'; });
   });
 </script>
